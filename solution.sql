@@ -21,8 +21,17 @@ join
 join
 	director ON movie_direction.dir_id = director.dir_id
 having
-	director.dirfname = 'Steven' and director.dirlname = 'Spielberg'
+	director.dirfname = 'Steven' and director.dirlname = 'Spielberg'   
 	
+-- 3.	All the movies where “Samuel L. Jackson” acted as “Supporting Actor” role.
+
+select * from movie
+join
+movie_cast on movie.mov_id = movie_cast.mov_id
+join
+actor ON movie_cast.act_id = actor.act_id
+having
+movie_cast.role = 'Supporting Actor' and CONCAT(actor.act_fname, actor.act_lname) = 'Samuel L.Jackson'
 
 
 
