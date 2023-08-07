@@ -12,3 +12,34 @@ where
 ordered by 
 	rating.num_o_ratings DESC
 
+-- 2.	All the movies Directed by “Steven Spielberg”.
+
+
+select * from movie
+join
+	movie_direction ON movie.mov_id = movie_direction.mov_id
+join
+	director ON movie_direction.dir_id = director.dir_id
+having
+	director.dirfname = 'Steven' and director.dirlname = 'Spielberg'
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
