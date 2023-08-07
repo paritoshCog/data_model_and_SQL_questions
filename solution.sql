@@ -33,6 +33,13 @@ actor ON movie_cast.act_id = actor.act_id
 where
 movie_cast.role = 'Supporting Actor' and actor.act_fname = 'Samuel L.' and actor.act_lname = 'Jackson'
 
+-- 4.	Find the directors & movie name who also acted on the same movie.
+
+select movie.mov_title, concat(director.dir_fname,' ',director.dir_lname) as director_name from movie
+join
+movie_direction ON movie.mov_id = movie_direction.mov_id
+join
+director ON movie_direction.dir_id = director.dir_id
 
 
 
