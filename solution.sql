@@ -42,6 +42,23 @@ join
 director ON movie_direction.dir_id = director.dir_id
 
 
+-- 5.	Find the name of director who created movie on all below 4 genre –
+-- a.	Horror 
+-- b.	Comedy
+-- c.	Drama 
+-- d.	Sci-Fi
+
+select concat(director.dir_fname,' ', director.dir_lname) from director
+join
+movie_direction ON director.dir_id = movie_direction.dir_id
+join
+movie ON movie_direction.mov_id = movie.mov_id
+join
+movie_genres ON movie.mov_id = movie_genres.mov_id
+join
+genres ON movie_genres.gen_id = genres.gen_id
+where
+genres.gen_title IN('horror','comedy','drama','sci-fi')
 
 
 
