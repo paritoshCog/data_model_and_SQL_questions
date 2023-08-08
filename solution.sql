@@ -69,11 +69,23 @@ select mov_id, mov_title from movie where mov_rel_country != 'India'
 
 -- 8.	Which year least number of movies had been released.
 
-select count(mov_id) as lest_mov from movie group by mov_year order by least_mov limit 1
+select count(mov_year) as lest_mov from movie group by mov_year order by least_mov limit 1
 
 -- 9.	Find the Movie name & actor name where any Actor played role of multiple characters.
 
 -- 10.	Which director has maximum number of movies with 5-star rating.
+
+select count(director.dir_id), movie.mov_title, rating.rev_stars from director
+join
+movie_direction ON director.dir_id = movie_direction.dir_id
+join
+movie ON movie_direction.mov_id = movie.movie_id
+join
+rating ON movie.mov_id = rating.mov_id
+where rating.rav_stars = 5
+order by
+director.dir_id desc
+limit 1
 
 
 
