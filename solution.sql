@@ -43,6 +43,9 @@ join
 director ON movie_direction.dir_id = director.dir_id
 
 
+SELECT d.dir_name,m.mov_name FROM movie m JOIN movie_direction md 
+JOIN director d ON d.dir_id=md.dir_id JOIN movie_cast mc ON mc.mov_id=m.mov_id JOIN actor a ON a.act_id=mc.act_id WHERE a.act_id=d.dir_id;
+
 -- 5.	Find the name of director who created movie on all below 4 genre –
 -- a.	Horror 
 -- b.	Comedy
@@ -72,6 +75,28 @@ select mov_id, mov_title from movie where mov_rel_country != 'India'
 select count(mov_year) as lest_mov from movie group by mov_year order by least_mov limit 1
 
 -- 9.	Find the Movie name & actor name where any Actor played role of multiple characters.
+CREATE VIEW male_table as
+(select actor.act_id, concat(actor.act_fname, ' ', actor.act_lname), movie_cast.role, movie.mov_title from actor
+join
+movie_cast ON actor.act_id = movie_cast.act_id
+join
+movie ON movie_cast.mov_id = movie.mov_id
+where
+movie_cast.role = 'Leading Actor')
+
+CREATE VIEW female_table as
+(select actor.act_id, concat(actor.act_fname, ' ', actor.act_lname), movie_cast.role, movie.mov_title from actor
+join
+movie_cast ON actor.act_id = movie_cast.act_id
+join
+movie ON movie_cast.mov_id = movie.mov_id
+where
+movie_cast.role = 'Leading Actor')
+
+select * from male_table 
+join
+female_table ON male_table.mov_id = female_table.mov_id
+
 
 -- 10.	Which director has maximum number of movies with 5-star rating.
 
