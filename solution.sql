@@ -61,7 +61,19 @@ genres ON movie_genres.gen_id = genres.gen_id
 where
 genres.gen_title = 'horror' and genres.gen_title = 'comedy' and genres.gen_title = 'drama' and genres.gen_title = 'sci-fi'
 
+-- 6.	Find the name pairs who played roles in maximum number of movies as “Leading Actor” & “Leading Actress.”
 
+-- 7.	Find how many Bengali movies releases outside India.
+
+select mov_id, mov_title from movie where mov_rel_country != 'India'
+
+-- 8.	Which year least number of movies had been released.
+
+select count(mov_id) as lest_mov from movie group by mov_year order by least_mov limit 1
+
+-- 9.	Find the Movie name & actor name where any Actor played role of multiple characters.
+
+-- 10.	Which director has maximum number of movies with 5-star rating.
 
 
 
