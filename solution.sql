@@ -66,15 +66,6 @@ genres.gen_title = 'horror' and genres.gen_title = 'comedy' and genres.gen_title
 
 -- 6.	Find the name pairs who played roles in maximum number of movies as “Leading Actor” & “Leading Actress.”
 
--- 7.	Find how many Bengali movies releases outside India.
-
-select mov_id, mov_title from movie where mov_rel_country != 'India'
-
--- 8.	Which year least number of movies had been released.
-
-select count(mov_year) as lest_mov from movie group by mov_year order by least_mov limit 1
-
--- 9.	Find the Movie name & actor name where any Actor played role of multiple characters.
 CREATE VIEW male_table as
 (select actor.act_id, concat(actor.act_fname, ' ', actor.act_lname), movie_cast.role, movie.mov_title from actor
 join
@@ -98,6 +89,19 @@ join
 female_table ON male_table.mov_id = female_table.mov_id
 
 
+
+-- 7.	Find how many Bengali movies releases outside India.
+
+select mov_id, mov_title from movie where mov_rel_country != 'India'
+
+-- 8.	Which year least number of movies had been released.
+
+select count(mov_year) as lest_mov from movie group by mov_year order by least_mov limit 1
+
+-- 9.	Find the Movie name & actor name where any Actor played role of multiple characters.
+
+
+	
 -- 10.	Which director has maximum number of movies with 5-star rating.
 
 select count(director.dir_id), movie.mov_title, rating.rev_stars from director
